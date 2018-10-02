@@ -1,0 +1,6 @@
+# frozen_string_literal: true
+
+if git.commits.any? { |commit| commit.message =~ /\bWIP\b/ }
+  warn 'One of your commits is a WIP commit. Please cleanup your git history ' \
+    'before merging.'
+end
