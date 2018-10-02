@@ -1,5 +1,10 @@
 image: ruby:2.5
 
+
+variables:
+  DANGER_GITLAB_HOST: git.panter.ch
+  DANGER_GITLAB_API_BASE_URL: https://git.panter.ch/api/v4
+
 before_script:
 - gem install bundler --no-ri --no-rdoc
 - bundle install -j $(nproc) --path vendor
@@ -7,3 +12,15 @@ before_script:
 rubocop:
   script:
   - bundle exec rubocop -D
+
+danger-review:
+  allow_failure: true
+  only:
+    variables:
+    - $DANGER_GITLAB_API_TOKEN
+  except:
+    refs:
+    - master
+  script:
+  - git version
+  - bundle exec danger --fail-on-errors=true
