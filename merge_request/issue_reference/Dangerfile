@@ -1,0 +1,8 @@
+# frozen_string_literal: true
+
+unless gitlab.mr_body =~ %r{/issues/\d+} || gitlab.mr_body =~ /#\d+/
+  warn <<~TEXT.gsub(/\$/, '')
+    This merge request does not reference any issues. Please add an \
+    issue reference to the Description.
+  TEXT
+end
