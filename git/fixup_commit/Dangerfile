@@ -1,0 +1,6 @@
+# frozen_string_literal: true
+
+if git.commits.any? { |commit| commit.message =~ /^fixup! / }
+  warn 'One of your commits is a fixup commit. Please squash your commits ' \
+    'before merging.'
+end
