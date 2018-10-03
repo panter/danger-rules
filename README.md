@@ -17,10 +17,6 @@ Provides rules for [Danger](https://danger.systems/ruby/) that ~~can~~ should
     danger.import_dangerfile(gitlab: 'panter/danger-rules', path: 'git/wip_commit')
     ```
 
-1. Add a [Secret
-   Variable](https://gitlab.com/help/ci/variables/README#variables)
-   `DANGER_GITLAB_API_TOKEN` with the value from `pass -c git.panter.ch/DANGER_GITLAB_API_TOKEN`
-   to your GitLab project
 1. Add the following to your `.gitlab-ci.yml`
 
     ```yaml
@@ -47,3 +43,12 @@ Provides rules for [Danger](https://danger.systems/ruby/) that ~~can~~ should
         - git version
         - bundle exec danger --fail-on-errors=true
     ```
+
+The group `panter` on git.panter.ch already has the `DANGER_GITLAB_API_TOKEN`
+variable set. If you need to create a project within another group you need to
+add the following variable to either the group or the project.
+
+1. Add a [Secret
+   Variable](https://gitlab.com/help/ci/variables/README#variables)
+   `DANGER_GITLAB_API_TOKEN` with the value from `pass -c git.panter.ch/DANGER_GITLAB_API_TOKEN`
+   to your GitLab project
