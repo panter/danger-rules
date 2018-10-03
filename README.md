@@ -1,4 +1,4 @@
-[![pipeline status](https://git.panter.ch/panter/danger-rules/badges/master/pipeline.svg)](https://git.panter.ch/panter/danger-rules/commits/master)
+[![pipeline status](https://git.panter.ch/open-source/danger-rules/badges/master/pipeline.svg)](https://git.panter.ch/open-source/danger-rules/commits/master)
 
 # Rules for [Danger](https://danger.systems/ruby/)
 
@@ -11,10 +11,10 @@ Provides rules for [Danger](https://danger.systems/ruby/) that ~~can~~ should
 
     ```ruby
     # imports all rules
-    danger.import_dangerfile(gitlab: 'panter/danger-rules')
+    danger.import_dangerfile(gitlab: 'open-source/danger-rules')
 
     # only import one specific rule
-    danger.import_dangerfile(gitlab: 'panter/danger-rules', path: 'git/wip_commit')
+    danger.import_dangerfile(gitlab: 'open-source/danger-rules', path: 'git/wip_commit')
     ```
 
 1. Add the following to your `.gitlab-ci.yml`
@@ -44,9 +44,10 @@ Provides rules for [Danger](https://danger.systems/ruby/) that ~~can~~ should
         - bundle exec danger --fail-on-errors=true
     ```
 
-The group `panter` on git.panter.ch already has the `DANGER_GITLAB_API_TOKEN`
-variable set. If you need to create a project within another group you need to
-add the following variable to either the group or the project.
+The groups `panter` and `open-source` on git.panter.ch already have the
+`DANGER_GITLAB_API_TOKEN` variable set. If you need to create a project within
+another group you need to add the following variable to either the group or the
+project.
 
 1. Add a [Secret
    Variable](https://gitlab.com/help/ci/variables/README#variables)
