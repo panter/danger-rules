@@ -11,7 +11,7 @@ Provides rules for [Danger](https://danger.systems/ruby/) that ~~can~~ should
 
     ```ruby
     # imports all rules
-    danger.import_dangerfile(gitlab: 'open-source/danger-rules')
+    danger.import_dangerfile(gitlab: 'open-source/danger-rules', path: 'all')
 
     # only import one specific rule
     danger.import_dangerfile(gitlab: 'open-source/danger-rules', path: 'git/wip_commit')

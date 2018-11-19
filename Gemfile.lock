@@ -52,6 +52,7 @@ GEM
     powerpack (0.1.2)
     public_suffix (3.0.3)
     rainbow (3.0.0)
+    rake (12.3.1)
     rubocop (0.59.2)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
@@ -73,7 +74,8 @@ PLATFORMS
 
 DEPENDENCIES
   danger-gitlab
+  rake
   rubocop
 
 BUNDLED WITH
-   1.16.2
+   1.16.6
