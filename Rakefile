@@ -52,7 +52,7 @@ task 'generate:readme' do
   File.write('README.md', readme)
 end
 
-desc 'Generate all Dangerfiles'
+desc 'Generate all Dangerfiles and update the rules description in the README'
 task generate: %i[generate:all generate:single generate:readme]
 
 def files(*patterns)
