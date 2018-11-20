@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
-desc 'Generate the complete all/Dangerfile'
+REQUIRE_PATTERN = /^require ["'].+?["']$/
+FROZEN_STRING = '# frozen_string_literal: true'
+ALL_DANGER_FILE = 'all/Dangerfile'
+
+desc "Generate the complete #{ALL_DANGER_FILE}"
 task 'generate:all' do
   contents = [
     header,
@@ -11,7 +15,7 @@ task 'generate:all' do
     contents << inlined_content(file)
   end
 
-  write_content('rules/all/Dangerfile', contents)
+  write_content("rules/#{ALL_DANGER_FILE}", contents)
 end
 
 desc 'Generate every single */**/Dangerfile'
@@ -21,18 +25,36 @@ task 'generate:single' do
     lib_files_content
   ]
 
-  files('src/*/**/Dangerfile').each do |file|
+  danger_files.each do |file|
     contents << inlined_content(file)
-    output_file = file.gsub(%r{^src/}, 'rules/')
+    output_file = file.sub(%r{^src/}, 'rules/')
     write_content(output_file, contents)
   end
 end
 
-desc 'Generate all Dangerfiles'
-task generate: %i[generate:all generate:single]
+desc 'Documents all available rules in the README'
+task 'generate:readme' do
+  files = [ALL_DANGER_FILE, *danger_files].map do |file|
+    file
+      .sub(%r{^src/}, '')
+      .sub(%r{/Dangerfile$}, '')
+      .gsub('_', '\_')
+      .yield_self { |f| "rules/#{f}" }
+  end
 
-REQUIRE_PATTERN = /^require ["'].+?["']$/
-FROZEN_STRING = '# frozen_string_literal: true'
+  rules_list = files.map { |file| "    - #{file}\n" }.join
+
+  readme = read_content('README.md')
+  readme.gsub!(
+    %r{(<!-- rules -->\n).+?( +<!-- /rules -->)}m,
+    "\\1#{rules_list}\\2"
+  )
+
+  File.write('README.md', readme)
+end
+
+desc 'Generate all Dangerfiles'
+task generate: %i[generate:all generate:single generate:readme]
 
 def files(*patterns)
   Dir[*patterns].sort

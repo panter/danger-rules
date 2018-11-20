@@ -17,6 +17,17 @@ Provides rules for [Danger](https://danger.systems/ruby/) that ~~can~~ should
     danger.import_dangerfile(gitlab: 'open-source/danger-rules', path: 'rules/git/wip_commit')
     ```
 
+    Available rules:
+
+    <!-- rules -->
+    - rules/all
+    - rules/git/commit\_message\_too\_long
+    - rules/git/fixup\_commit
+    - rules/git/master\_merge\_commit
+    - rules/git/wip\_commit
+    - rules/merge\_request/issue\_reference
+    <!-- /rules -->
+
 1. Add the following to your `.gitlab-ci.yml`
 
     ```yaml
