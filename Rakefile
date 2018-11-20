@@ -20,13 +20,12 @@ end
 
 desc 'Generate every single */**/Dangerfile'
 task 'generate:single' do
-  contents = [
-    header,
-    lib_files_content
-  ]
-
   danger_files.each do |file|
-    contents << inlined_content(file)
+    contents = [
+      header,
+      lib_files_content,
+      inlined_content(file)
+    ]
     output_file = file.sub(%r{^src/}, 'rules/')
     write_content(output_file, contents)
   end
