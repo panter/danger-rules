@@ -61,14 +61,23 @@ Provides rules for [Danger](https://danger.systems/ruby/) that ~~can~~ should
         - bundle exec danger --fail-on-errors=true
     ```
 
-The group `panter` on git.panter.ch already has the `DANGER_GITLAB_API_TOKEN`
-variable set. If you need to create a project within another group you need to
-add the following variable to either the group or the project.
+The groups `panter` and `open-source` on [git.panter.ch](https://git.panter.ch)
+already have the `DANGER_GITLAB_API_TOKEN` variable set. If you need to create
+a project within another group you need to add the following variable to either
+the group or the project.
+
+Those two groups already allow the `@gitlab-bot` user access, so any projects
+within those groups are fine already.
 
 1. Add a [Secret
    Variable](https://gitlab.com/help/ci/variables/README#variables)
    `DANGER_GITLAB_API_TOKEN` with the value from `pass -c git.panter.ch/DANGER_GITLAB_API_TOKEN`
    to your GitLab group or project
+
+1. For **non-public** projects that are not within the group `panter` the user
+   `@gitlab-bot` needs to be added as `guest`.
+   **IMPORTANT**: Don't re-use this bot for public projects, as the access
+   token could be extracted and would give access to the non-public projects.
 
 ## Contributing
 
