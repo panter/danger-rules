@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-REQUIRE_PATTERN = /^require ["'].+?["']$/
+REQUIRE_PATTERN = /^require ["'].+?["']$/.freeze
 FROZEN_STRING = '# frozen_string_literal: true'
 ALL_DANGER_FILE = 'all/Dangerfile'
 
