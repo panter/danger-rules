@@ -29,7 +29,7 @@ danger-review:
   - git version
   - bundle exec danger --fail-on-errors=true
 
-assert-danger-all:
+assert-generated-danger-files:
   script:
     - git version
     - git checkout -f $CI_COMMIT_SHA
