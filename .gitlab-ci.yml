@@ -33,5 +33,5 @@ assert-danger-all:
   script:
     - git version
     - git checkout -f $CI_COMMIT_SHA
-    - bundle exec rake generate_all
+    - bundle exec rake generate
     - git diff --exit-code || (printf "\033[0;31mThe Dangerfile 'all/Dangerfile' has not been regenerated. Run 'rake generate_all' and commit the changes.\n" && exit 1)
