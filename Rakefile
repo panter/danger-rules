@@ -36,7 +36,6 @@ task 'generate:readme' do
   files = [ALL_DANGER_FILE, *danger_files].map do |file|
     file
       .sub(%r{^src/}, '')
-      .sub(%r{/Dangerfile$}, '')
       .gsub('_', '\_')
       .yield_self { |f| "rules/#{f}" }
   end

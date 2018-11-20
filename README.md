@@ -11,21 +11,21 @@ Provides rules for [Danger](https://danger.systems/ruby/) that ~~can~~ should
 
     ```ruby
     # imports all rules
-    danger.import_dangerfile(gitlab: 'open-source/danger-rules', path: 'rules/all')
+    danger.import_dangerfile(gitlab: 'open-source/danger-rules', path: 'rules/all/Dangerfile')
 
     # only import one specific rule
-    danger.import_dangerfile(gitlab: 'open-source/danger-rules', path: 'rules/git/wip_commit')
+    danger.import_dangerfile(gitlab: 'open-source/danger-rules', path: 'rules/git/wip_commit/Dangerfile')
     ```
 
     Available rules:
 
     <!-- rules -->
-    - rules/all
-    - rules/git/commit\_message\_too\_long
-    - rules/git/fixup\_commit
-    - rules/git/master\_merge\_commit
-    - rules/git/wip\_commit
-    - rules/merge\_request/issue\_reference
+    - rules/all/Dangerfile
+    - rules/git/commit\_message\_too\_long/Dangerfile
+    - rules/git/fixup\_commit/Dangerfile
+    - rules/git/master\_merge\_commit/Dangerfile
+    - rules/git/wip\_commit/Dangerfile
+    - rules/merge\_request/issue\_reference/Dangerfile
     <!-- /rules -->
 
 1. Add the following to your `.gitlab-ci.yml`
