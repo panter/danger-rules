@@ -20,6 +20,12 @@ Provides rules for [Danger](https://danger.systems/ruby/) that ~~can~~ should
 1. Add the following to your `.gitlab-ci.yml`
 
     ```yaml
+    include: 'https://git.panter.ch/open-source/danger-rules/raw/master/gitlab-ci-include.yml'
+    ```
+
+1. (Alternative): You may also define the review job directly:
+
+    ```yaml
     # The image needs to have ruby installed
     # You may also define a specific image for the `danger-review` job if your
     # overall image doesn't contain ruby.
