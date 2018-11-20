@@ -1,0 +1,37 @@
+image: ruby:2.5
+
+variables:
+  DANGER_GITLAB_HOST: git.panter.ch
+  DANGER_GITLAB_API_BASE_URL: https://git.panter.ch/api/v4
+
+cache:
+  key: "$CI_COMMIT_REF_SLUG"
+  paths:
+    - vendor/ruby
+
+before_script:
+- gem install bundler --no-ri --no-rdoc
+- bundle install -j $(nproc) --path vendor
+
+rubocop:
+  script:
+  - bundle exec rubocop -D
+
+danger-review:
+  allow_failure: true
+  only:
+    variables:
+    - $DANGER_GITLAB_API_TOKEN
+  except:
+    refs:
+    - master
+  script:
+  - git version
+  - bundle exec danger --fail-on-errors=true
+
+assert-generated-danger-files:
+  script:
+    - git version
+    - git checkout -f $CI_COMMIT_SHA
+    - bundle exec rake generate
+    - git diff --exit-code || (printf "\033[0;31mThe Dangerfile 'all/Dangerfile' has not been regenerated. Run 'rake generate_all' and commit the changes.\n" && exit 1)

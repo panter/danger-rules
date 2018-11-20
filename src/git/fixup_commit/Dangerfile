@@ -1,0 +1,9 @@
+# frozen_string_literal: true
+
+git
+  .commits
+  .select { |commit| commit.message =~ /^fixup! / }
+  .each do |commit|
+    warn "The commit #{commit.sha} `#{commit.message}` is a fixup commit. " \
+      'Please squash your commits before merging.'
+  end

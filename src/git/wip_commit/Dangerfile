@@ -1,0 +1,9 @@
+# frozen_string_literal: true
+
+git
+  .commits
+  .select { |commit| commit.message =~ /\bWIP\b/ }
+  .each do |commit|
+    warn "The commit #{commit.sha} `#{commit.message}` is a WIP commit. " \
+     'Please cleanup your git history before merging.'
+  end

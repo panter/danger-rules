@@ -1,0 +1,12 @@
+# frozen_string_literal: true
+
+require './lib/heredoc'
+
+unless gitlab.mr_body =~ %r{/issues/\d+} || gitlab.mr_body =~ /#\d+/
+  warn heredoc(
+    <<~TEXT
+      This merge request does not reference any issues. Please add an \
+      issue reference to the Description.
+    TEXT
+  )
+end

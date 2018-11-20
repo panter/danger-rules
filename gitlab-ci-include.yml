@@ -1,0 +1,17 @@
+danger-review:
+  image: ruby:2.5
+  variables:
+    DANGER_GITLAB_HOST: git.panter.ch
+    DANGER_GITLAB_API_BASE_URL: https://git.panter.ch/api/v4
+  allow_failure: true
+  before_script:
+    - gem install danger-gitlab --no-document
+  only:
+    variables:
+    - $DANGER_GITLAB_API_TOKEN
+  except:
+    refs:
+    - master
+  script:
+    - git version
+    - danger --fail-on-errors=true
